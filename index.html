@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Per te, Stellina 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans&display=swap" rel="stylesheet">
+<style>
+  body {
+  .intro {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to right, #ffdde1, #ee9ca7);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3em;
+    margin-bottom: 20px;
+  }
+  .reason-box {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    backdrop-filter: blur(10px);
+  }
+  .reason, .kitty {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+  }
+  .kitty {
+    width:200px;
+    margin-bottom:20px;
+  }
+  @keyframes fadeIn {
+    to { opacity:1; }
+  }
+  .heart {
+    font-size: 2em;
+    margin-top: 20px;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  button {
+    margin-top: 20px;
+    background-color: #fff;
+    color: #ee9ca7;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background-color: #ffd3dc;
+  }
+</style>
+</head>
+<body>
+  <h1>Per te, Stellina 💖</h1>
+  <p class="intro">Questi sono i motivi per cui ti amo 💘</p>
+  <div class="reason-box">
+    <img id="kitty" class="kitty" src="" alt="Gattino adorabile">
+    <div id="reason" class="reason">Caricamento motivi...</div>
+    <div class="heart">❤️</div>
+    <button onclick="showNextReason()">Avanti</button>
+  </div>
+
+  <script>
+    const reasons = [
+      "Perché il tuo sorriso illumina anche i miei giorni più bui.",
+      "Perché con te mi sento a casa, ovunque siamo.",
+      "Perché la tua voce è la mia melodia preferita.",
+      "Perché ogni giorno con te è un regalo prezioso.",
+      "Perché sei dolce, forte, e meravigliosa.",
+      "Perché rendi la mia vita più bella, semplicemente esistendo.",
+      "Perché con te rido di cuore e sogno senza paura.",
+      "Perché sei la mia Stellina, e io sono tuo per sempre.",
+"E... perché ho il pesce bello grosso e lungo 😏🐟"
+    ];
+    const kitties = [
+      "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
+      "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
+      "https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif",
+      "https://media.giphy.com/media/VbnUQpnihPSIgIXuZv/giphy.gif",
+"https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
+    ];
+    let index = 0;
+    const reasonDiv = document.getElementById("reason");
+    const kittyImg = document.getElementById("kitty");
+
+    function showNextReason() {
+      reasonDiv.style.opacity = 0;
+      kittyImg.style.opacity = 0;
+      setTimeout(() => {
+        reasonDiv.textContent = reasons[index];
+        kittyImg.src = kitties[index % kitties.length];
+        reasonDiv.style.animation = "none";
+        kittyImg.style.animation = "none";
+        void reasonDiv.offsetWidth;
+        void kittyImg.offsetWidth;
+        reasonDiv.style.animation = "fadeIn 1s forwards";
+        kittyImg.style.animation = "fadeIn 1s forwards";
+        index = (index + 1) % reasons.length;
+      }, 300);
+    }
+    window.onload = showNextReason;
+  </script>
+</body>
+</html>
